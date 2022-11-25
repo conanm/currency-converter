@@ -19,7 +19,8 @@ class CurrenciesViewModel {
     loading.accept(true)
     let symbolsResult = Bundle.main.decode(SymbolsResult.self, from: "getSymbols.json")
     // TODO: do some map to show key: desc so we can take advantage of the data in the .json better.
-    let currencyKeys = Array(symbolsResult.symbols.keys)
+    let currencyKeys = Array(symbolsResult.symbols.keys).sorted()
+    
     currencies.onNext(currencyKeys)
     loading.accept(false)
     // TODO: write network call
@@ -38,21 +39,11 @@ class CurrenciesViewModel {
       }
       do {
         let currencyConversionResult = try JSONDecoder().decode(ConvertResult.self, from: data)
-        self.convertedOutput.onNext(String(currencyConversionResult.result))
+        self.convertedOutput.onNext(String(format: "%.2f", currencyConversionResult.result))
         print(data)
-      } catch let DecodingError.dataCorrupted(context) {
-        print(context)
-      } catch let DecodingError.keyNotFound(key, context) {
-        print("Key '\(key)' not found:", context.debugDescription)
-        print("codingPath:", context.codingPath)
-      } catch let DecodingError.valueNotFound(value, context) {
-        print("Value '\(value)' not found:", context.debugDescription)
-        print("codingPath:", context.codingPath)
-      } catch let DecodingError.typeMismatch(type, context)  {
-        print("Type '\(type)' mismatch:", context.debugDescription)
-        print("codingPath:", context.codingPath)
-      } catch {
-        print("error: ", error)
+      } catch let error {
+        print(error)
+        // TODO: move to error field.
       }
     }
     

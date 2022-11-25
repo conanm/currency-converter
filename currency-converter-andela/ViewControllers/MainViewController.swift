@@ -9,12 +9,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class MainViewController: UIViewController {
   
   var fromCurrencyPickerView = UIPickerView.init(frame: .zero)
   var toCurrencyPickerView = UIPickerView.init(frame: .zero)
  
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   @IBOutlet weak var fromCurrency: UITextField!
   @IBOutlet weak var toCurrency: UITextField!
   @IBOutlet weak var outputValue: UITextField!
@@ -38,32 +38,39 @@ class MainViewController: UIViewController {
   
 }
 
+
 // TODO: add protocol
+// Binding
 extension MainViewController {
   
   func bindView() {
-    // TODO add load/error states
+    currenciesViewModel.loading.asObservable()
+      .observe(on: MainScheduler.instance)
+      .bind(to: activityIndicator.rx.isAnimating)
+      .disposed(by: disposeBag)
     // Data (available currencies)
     currenciesViewModel.currencies
       .observe(on: MainScheduler.instance)
       .bind(to: fromCurrencyPickerViewModel.symbols)
       .disposed(by: disposeBag)
-
     currenciesViewModel.currencies
       .observe(on: MainScheduler.instance)
       .bind(to: toCurrencyPickerViewModel.symbols)
       .disposed(by: disposeBag)
-
+    // Events (editing ending input text field)
+    fromCurrency.rx.controlEvent([.editingDidEnd])
+      .asObservable()
+      .subscribe(onNext:{ [unowned self] in
+        self.currenciesViewModel.convert(from: self.fromCurrency.text!,
+                                                        to: self.toCurrency.text!,
+                                                        amount: self.inputValue.text!)
+      }).disposed(by: disposeBag)
+    // Output of the conversion (to text field)
+    currenciesViewModel.convertedOutput
+      .observe(on: MainScheduler.instance)
+      .bind(to: outputValue.rx.text)
+      .disposed(by: disposeBag)
     
-//    // Event - Changed Currency
-//    let _ = currencyPickerView.rx.itemSelected
-//        .subscribe(onNext: { [weak self] (row, value) in
-//          print(row)
-//          print(value)
-//          
-//          print(value)
-//          self?.fromCurrency.resignFirstResponder()
-//        })
   }
   
 }

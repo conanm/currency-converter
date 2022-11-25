@@ -21,10 +21,12 @@ class MainViewController: UIViewController {
   @IBOutlet weak var inputValue: UITextField!
   
   var currenciesViewModel = CurrenciesViewModel()
+  var currencyPickerViewModel: CurrencyPickerViewModel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     fromCurrency.inputView = currencyPickerView
+    currencyPickerViewModel = CurrencyPickerViewModel.init(pickerView: currencyPickerView, textField: fromCurrency)
     self.bindView()
     self.currenciesViewModel.getSymbols()
     

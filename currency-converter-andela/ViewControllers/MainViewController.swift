@@ -46,7 +46,9 @@ extension MainViewController {
   func bindView() {
     currenciesViewModel.loading.asObservable()
       .observe(on: MainScheduler.instance)
-      .bind(to: activityIndicator.rx.isAnimating)
+      .subscribe(onNext: { [weak self] loading in
+        self?.activityIndicator.isHidden = !loading
+      })
       .disposed(by: disposeBag)
     // Data (available currencies)
     currenciesViewModel.currencies

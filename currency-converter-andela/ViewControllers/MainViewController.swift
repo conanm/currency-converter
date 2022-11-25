@@ -14,10 +14,13 @@ class MainViewController: UIViewController {
   @IBOutlet weak var outputValue: UITextField!
   @IBOutlet weak var inputValue: UITextField!
   
+  var currenciesViewModel = CurrenciesViewModel()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    let currencies = Bundle.main.decode(SymbolsResult.self, from: "getSymbols.json")
-    print(currencies)
+    
+    self.currenciesViewModel.getSymbols()
+    
   }
 
 }

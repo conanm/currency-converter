@@ -13,7 +13,7 @@ class CurrencyPickerViewModel {
   
   private let pickerView: UIPickerView
   private let textField: UITextField
-  public var symbols: BehaviorRelay<[String:String]> = BehaviorRelay(value: [:])
+  public var symbols: BehaviorRelay<[String]> = BehaviorRelay(value: [])
   private let disposeBag = DisposeBag()
   
   init(pickerView: UIPickerView, textField: UITextField) {
@@ -25,14 +25,14 @@ class CurrencyPickerViewModel {
   func setupBindings() {
     textField.inputView = pickerView
     symbols.bind(to: self.pickerView.rx.itemTitles) { (row, element) in
-      return element.value
+      return element
     }.disposed(by: disposeBag)
 
 
     let _ = pickerView.rx.itemSelected
       .subscribe(onNext: {  [weak self] (row, value) in
-        print(row)
-        
+        self?.textField.text = self?.symbols.value[row]
+        self?.textField.resignFirstResponder()
       })
 
   }

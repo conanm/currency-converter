@@ -6,6 +6,7 @@ target 'currency-converter-andela' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'RxSwift'
+  pod 'RxCocoa'
   # Pods for currency-converter-andela
 
   target 'currency-converter-andelaTests' do

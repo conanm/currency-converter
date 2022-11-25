@@ -42,22 +42,22 @@ extension MainViewController {
     // Data (available currencies)
     currenciesViewModel.currencies
       .observe(on: MainScheduler.instance)
-      .bind(to: symbols)
+      .bind(to: currencyPickerViewModel.symbols)
     
     // Data - setup picker titles
-    symbols.bind(to: self.currencyPickerView.rx.itemTitles) { (row, element) in
-      return element.value
-    }
+//    symbols.bind(to: self.currencyPickerView.rx.itemTitles) { (row, element) in
+//      return element.value
+//    }
     
-    // Event - Changed Currency
-    let _ = currencyPickerView.rx.itemSelected
-        .subscribe(onNext: { [weak self] (row, value) in
-          print(row)
-          print(value)
-          
-          print(value)
-          self?.fromCurrency.resignFirstResponder()
-        })
+//    // Event - Changed Currency
+//    let _ = currencyPickerView.rx.itemSelected
+//        .subscribe(onNext: { [weak self] (row, value) in
+//          print(row)
+//          print(value)
+//          
+//          print(value)
+//          self?.fromCurrency.resignFirstResponder()
+//        })
   }
   
 }

@@ -1,0 +1,6 @@
+framework module Pods_currency_converter_andelaTests {
+  umbrella header "Pods-currency-converter-andelaTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

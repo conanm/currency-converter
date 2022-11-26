@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 // Convenience method for loading local JSON easily with decoder
 // https://www.hackingwithswift.com/example-code/system/how-to-decode-json-from-your-app-bundle-the-easy-way
 extension Bundle {

@@ -67,9 +67,6 @@ class HistoricalDataViewController: UIViewController {
                      cellType: UITableViewCell.self)) {
         (row,track,cell) in
         cell.textLabel!.text = "\(self.baseCurrency) \(self.baseVal) : \(track.currency) \(String(format: "%.2f", track.value ))"
-        
-        
-
       }.disposed(by: disposeBag)
   }
 }

@@ -84,21 +84,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8IJ-OC-zDE">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-T0-wzs">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-T0-wzs" customClass="HistoricalDataChartView">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="151.66666666666666"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chart (todo)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avB-Ha-Jbl">
-                                                <rect key="frame" x="0.0" y="131.33333333333334" width="93.666666666666671" height="20.333333333333343"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="avB-Ha-Jbl" secondAttribute="bottom" id="W3Y-fv-Cal"/>
-                                            <constraint firstItem="avB-Ha-Jbl" firstAttribute="leading" secondItem="TcR-T0-wzs" secondAttribute="leading" id="qFu-PC-5TB"/>
-                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-yO-wRo">
                                         <rect key="frame" x="0.0" y="151.66666666666669" width="393" height="607.33333333333326"/>
@@ -179,6 +167,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3M7-VC-9l3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="941.22137404580144" y="-2.1126760563380285"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="qxe-Wl-w7l">
+            <objects>
+                <hostingController id="2Yo-CA-WQE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EGa-I9-JrD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1610" y="-2"/>
         </scene>
     </scenes>
     <resources>

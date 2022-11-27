@@ -13,7 +13,8 @@ class HistoricalDataViewModel {
   public var historicalData: PublishSubject<[Rate]> = PublishSubject()
   
   func historical(fromCurrency: String, toCurrency: String, startDate: String, endDate: String) {
-    let url = "https://api.apilayer.com/fixer/timeseries?start_date=\(startDate)&end_date=\(endDate)&symbols=\(fromCurrency),\(toCurrency)"
+    let url = "https://api.apilayer.com/fixer/timeseries?base=\(fromCurrency)&start_date=\(startDate)&end_date=\(endDate)&symbols=\(toCurrency)"
+    print("requesting... \(url)")
     var request = URLRequest(url: URL(string: url)!,timeoutInterval: Double.infinity)
     request.httpMethod = "GET"
     request.addValue("RqACamdCivMdonCaSCk6zWnUHUyDGXO2", forHTTPHeaderField: "apikey")
@@ -26,7 +27,7 @@ class HistoricalDataViewModel {
       do {
         let historicalDataResult = try JSONDecoder().decode(HistoricalDataResult.self, from: data)
         self?.historicalData.onNext(historicalDataResult.historicalRates(fromSymbol: fromCurrency))
-        print(data)
+      
       } catch let error {
         print(error)
         // TODO: move to error field.

@@ -24,7 +24,6 @@ struct HistoricalDataResult: Codable {
   /// fromSymbol -> symbol to ignore in results (this will be static, e.g. we're always checking static input, e.g. 1 EUR or 12 USD
   func historicalRates(fromSymbol: String) -> [Rate] {
     var parsedRates:[Rate] = []
-    let thing = rates["1"]
     for dateDictionary in self.rates {
       let dateString = dateDictionary.key
       let ratesForDate = dateDictionary.value

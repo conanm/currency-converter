@@ -23,8 +23,6 @@ class HistoricalDataViewController: UIViewController {
   var fromCurrencyCode: String = ""
   var toCurrencyCode: String = ""
   var toCurrencyValue: String = ""
-  var baseVal = 1
-  
   
   public var data = PublishSubject<HistoricalDataResult>()
   
@@ -83,7 +81,7 @@ class HistoricalDataViewController: UIViewController {
         .items(cellIdentifier: "Cell",
                cellType: UITableViewCell.self)) {
         (row,track,cell) in
-        cell.textLabel!.text = "\(self.baseCurrency) \(self.baseVal) : \(track.currency) \(String(format: "%.2f", track.value ))"
+        cell.textLabel!.text = "\(self.fromCurrencyCode) \(self.fromCurrencyValue) : \(track.currency) \(String(format: "%.2f", track.value ))"
       }.disposed(by: disposeBag)
     
   }

@@ -20,6 +20,6 @@ struct ConvertResultInfo: Codable {
   let timestamp: Int
 }
 struct ConvertResultQuery: Codable {
-  let amount: Int
+  let amount: Double
   let from, to: String
 }

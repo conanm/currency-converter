@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
   @IBOutlet weak var outputValue: UITextField!
   @IBOutlet weak var inputValue: UITextField!
   @IBOutlet weak var detailsButton: UIButton!
+  @IBOutlet weak var swapButton: UIButton!
   
   private let disposeBag = DisposeBag()
   
@@ -63,7 +64,21 @@ extension MainViewController {
       .bind(to: toCurrencyPickerViewModel.symbols)
       .disposed(by: disposeBag)
     // Events (editing ending input text field)
+    inputValue.rx.controlEvent([.editingDidEnd])
+      .asObservable()
+      .subscribe(onNext:{ [unowned self] in
+        self.currenciesViewModel.convert(from: self.fromCurrency.text!,
+                                         to: self.toCurrency.text!,
+                                         amount: self.inputValue.text!)
+      }).disposed(by: disposeBag)
     fromCurrency.rx.controlEvent([.editingDidEnd])
+      .asObservable()
+      .subscribe(onNext:{ [unowned self] in
+        self.currenciesViewModel.convert(from: self.fromCurrency.text!,
+                                         to: self.toCurrency.text!,
+                                         amount: self.inputValue.text!)
+      }).disposed(by: disposeBag)
+    toCurrency.rx.controlEvent([.editingDidEnd])
       .asObservable()
       .subscribe(onNext:{ [unowned self] in
         self.currenciesViewModel.convert(from: self.fromCurrency.text!,
@@ -76,6 +91,15 @@ extension MainViewController {
       .bind(to: outputValue.rx.text)
       .disposed(by: disposeBag)
     
+    let _ = swapButton.rx.tap.bind { [unowned self] in
+      let currentInputValue = self.inputValue.text
+      self.inputValue.text = self.outputValue.text
+      self.outputValue.text = currentInputValue
+      self.currenciesViewModel.convert(from: self.fromCurrency.text!,
+                                       to: self.toCurrency.text!,
+                                       amount: self.inputValue.text!)
+    }
+    
     let _ = detailsButton.rx.tap.bind {
       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
       let vc = storyboard.instantiateViewController(withIdentifier: "HistoricalDataViewController") as! HistoricalDataViewController
@@ -84,7 +108,7 @@ extension MainViewController {
       vc.fromCurrencyValue = self.inputValue.text!
       vc.toCurrencyCode = self.toCurrency.text!
       vc.toCurrencyValue = self.outputValue.text!
-
+      
       self.present(vc, animated: true)
     }
     

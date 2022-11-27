@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_currency_converter_andela_currency_converter_andelaUITests : NSObject
-@end
-@implementation PodsDummy_Pods_currency_converter_andela_currency_converter_andelaUITests
-@end

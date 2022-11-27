@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Rate: Identifiable {
+struct Rate: Identifiable, Equatable {
   let id = UUID()
   let date: String
   let currency :String
@@ -18,4 +18,12 @@ struct Rate: Identifiable {
     formatter.dateFormat = "yyyy-MM-dd"
     return formatter.date(from: date) ?? Date.distantPast
   }
+  
+  static func == (lhs: Rate, rhs: Rate) -> Bool {
+          return
+              lhs.date == rhs.date &&
+              lhs.currency == rhs.currency &&
+              lhs.value == rhs.value
+      }
+
 }

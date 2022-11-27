@@ -43,13 +43,3 @@ class LatestRatesDataViewModel {
   }
 }
 
-
-extension LatestRatesDataViewModel {
-  
-  func latestRatesStub(fromCurrency: String, toCurrency: String, startDate: String, endDate: String) {
-    let latestResultsJSON = Bundle.main.decode(LatestRatesResult.self, from: "getLatest.json")
-    let historicalRatesArray = latestResultsJSON.latestRates()
-    latestResults.onNext(historicalRatesArray)
-  }
-  
-}

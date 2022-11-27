@@ -8,14 +8,11 @@ target 'currency-converter-andela' do
   pod 'RxSwift'
   pod 'RxCocoa'
   # Pods for currency-converter-andela
-
+  
   target 'currency-converter-andelaTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'RxTest'
   end
-
-  target 'currency-converter-andelaUITests' do
-    # Pods for testing
-  end
-
+  
+  
 end

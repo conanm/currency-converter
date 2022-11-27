@@ -9,8 +9,15 @@ import UIKit
 
 // Convenience method for loading local JSON easily with decoder
 // credit: https://www.hackingwithswift.com/example-code/system/how-to-decode-json-from-your-app-bundle-the-easy-way
+//
+// CDM - normally I'd move this into the testing module since we don't want it in production... However I have it tied
+// into the getCurrencies call so I'll leave it here..
 extension Bundle {
-  func decode<T: Decodable>(_ type: T.Type, from file: String, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate, keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) -> T {
+  func decode<T: Decodable>(_ type: T.Type,
+                            from file: String,
+                            dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
+                            keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) -> T {
+    
     guard let url = self.url(forResource: file, withExtension: nil) else {
       fatalError("Failed to locate \(file) in bundle.")
     }

@@ -38,11 +38,3 @@ class HistoricalDataViewModel {
     
   }
 }
-
-extension HistoricalDataViewModel {
-  func historicalStub(fromCurrency: String, toCurrency: String, startDate: String, endDate: String, amount: Double = 1) {
-    let historicalResult = Bundle.main.decode(HistoricalDataResult.self, from: "getHistorical.json")
-    let ratesArray = historicalResult.historicalRates(fromSymbol: fromCurrency, amount: amount)
-    historicalData.onNext(ratesArray)
-  }
-}

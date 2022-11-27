@@ -65,7 +65,8 @@ class HistoricalDataViewController: UIViewController {
         .items(cellIdentifier: "historicalDataTableViewCell",
                cellType: HistoricalDataTableViewCell.self)) {
         (row,track,cell) in
-        cell.cellModel = track
+        cell.dateLabel!.text = track.date
+        cell.infoLabel!.text = "\(self.fromCurrencyValue) \(self.fromCurrencyCode) - \(track.currency) \(String(format: "%.2f", track.value ))"
       }.disposed(by: disposeBag)
     
     historicalDataViewModel

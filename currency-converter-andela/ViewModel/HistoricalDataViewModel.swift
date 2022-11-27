@@ -25,7 +25,7 @@ class HistoricalDataViewModel {
       }
       do {
         let historicalDataResult = try JSONDecoder().decode(HistoricalDataResult.self, from: data)
-        self?.historicalData.onNext(historicalDataResult.historicalRates(symbol: toCurrency))
+        self?.historicalData.onNext(historicalDataResult.historicalRates(fromSymbol: fromCurrency))
         print(data)
       } catch let error {
         print(error)
@@ -41,7 +41,7 @@ class HistoricalDataViewModel {
 extension HistoricalDataViewModel {
   func historicalStub(fromCurrency: String, toCurrency: String, startDate: String, endDate: String) {
     let historicalResult = Bundle.main.decode(HistoricalDataResult.self, from: "getHistorical.json")
-    let ratesArray = historicalResult.historicalRates(symbol: toCurrency)
+    let ratesArray = historicalResult.historicalRates(fromSymbol: fromCurrency)
     historicalData.onNext(ratesArray)
   }
 }

@@ -28,7 +28,8 @@ class CurrenciesViewModel {
   
   func convert(from: String, to: String, amount: String) {
     if (loading.value) {return}
-    let url = "https://api.apilayer.com/fixer/convert?to=\(from)&from=\(to)&amount=\(amount)"
+    let url = "https://api.apilayer.com/fixer/convert?from=\(from)&to=\(to)&amount=\(amount)"
+    print("requesting: \(url)")
     var request = URLRequest(url: URL(string: url)!)
     request.httpMethod = "GET"
     request.addValue("RqACamdCivMdonCaSCk6zWnUHUyDGXO2", forHTTPHeaderField: "apikey")

@@ -40,7 +40,8 @@ class HistoricalDataViewController: UIViewController {
       .historical(fromCurrency: fromCurrencyCode,
                   toCurrency: toCurrencyCode,
                   startDate: Date().dateString(daysDifference: -3),
-                  endDate: Date().dateString(daysDifference: -1))
+                  endDate: Date().dateString(daysDifference: -1),
+                  amount: Double(fromCurrencyValue)!)
     
     latestRatesViewModel
       .latestRates(fromCurrency: fromCurrencyCode,

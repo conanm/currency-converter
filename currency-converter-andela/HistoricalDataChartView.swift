@@ -15,28 +15,20 @@ struct StepCount: Identifiable {
   }
 }
 
-let currentWeek: [StepCount] = [
-  StepCount(date: "2022-11-25", value: 1.1),
-  StepCount(date: "2022-11-24", value: 1.321251),
-  StepCount(date: "2022-11-23", value: 1.12112)
-]
-
 struct HistoricalDataChartView: View {
+  let rates:[Rate]
+  init(rates:[Rate]) {
+    self.rates = rates
+  }
+  
   var body: some View {
     Chart {
-      ForEach(currentWeek) {
+      ForEach(rates) {
         LineMark(
-          x: .value("Date", $0.date, unit: .day),
+          x: .value("Date", $0.dateValue(), unit: .day),
           y: .value("Value", $0.value)
         )
       }
     }
-    
-  }
-}
-
-struct HistoricalDataChartView_Previews: PreviewProvider {
-  static var previews: some View {
-    HistoricalDataChartView()
   }
 }

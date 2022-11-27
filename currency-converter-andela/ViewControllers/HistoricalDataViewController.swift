@@ -36,7 +36,6 @@ class HistoricalDataViewController: UIViewController {
                                   forCellReuseIdentifier: "Cell")
     
     setupBindings()
-    setupChartView()
     
     historicalDataViewModel
       .historical(fromCurrency: "EUR",
@@ -51,8 +50,8 @@ class HistoricalDataViewController: UIViewController {
                    endDate: "")
   }
   
-  private func setupChartView() {
-    let childView = UIHostingController(rootView: HistoricalDataChartView())
+  private func setupChartView(rates: [Rate]) {
+    let childView = UIHostingController(rootView: HistoricalDataChartView(rates: rates))
     addChild(childView)
     childView.view.frame = chartContainerView.frame
     view.addSubview(childView.view)
@@ -70,6 +69,12 @@ class HistoricalDataViewController: UIViewController {
         cell.cellModel = track
       }.disposed(by: disposeBag)
     
+    historicalDataViewModel
+      .historicalData
+      .subscribe(onNext: { rates in
+        self.setupChartView(rates: rates)
+      }).disposed(by: disposeBag)
+    
     latestRatesViewModel
       .latestResults
       .bind(to: latestRatesTableView
@@ -79,6 +84,7 @@ class HistoricalDataViewController: UIViewController {
         (row,track,cell) in
         cell.textLabel!.text = "\(self.baseCurrency) \(self.baseVal) : \(track.currency) \(String(format: "%.2f", track.value ))"
       }.disposed(by: disposeBag)
+    
   }
 }
 

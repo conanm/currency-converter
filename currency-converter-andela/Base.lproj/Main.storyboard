@@ -86,7 +86,16 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-T0-wzs" userLabel="Chart Container View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="151.66666666666666"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gH5-zZ-vi9">
+                                                <rect key="frame" x="178" y="57.333333333333329" width="37" height="37"/>
+                                            </activityIndicatorView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="gH5-zZ-vi9" firstAttribute="centerY" secondItem="TcR-T0-wzs" secondAttribute="centerY" id="i6e-7m-AYZ"/>
+                                            <constraint firstItem="gH5-zZ-vi9" firstAttribute="centerX" secondItem="TcR-T0-wzs" secondAttribute="centerX" id="xU3-zL-w27"/>
+                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-yO-wRo">
                                         <rect key="frame" x="0.0" y="151.66666666666669" width="393" height="607.33333333333326"/>

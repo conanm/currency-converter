@@ -95,9 +95,6 @@ extension MainViewController {
       let currentInputValue = self.inputValue.text
       self.inputValue.text = self.outputValue.text
       self.outputValue.text = currentInputValue
-      self.currenciesViewModel.convert(from: self.fromCurrency.text!,
-                                       to: self.toCurrency.text!,
-                                       amount: self.inputValue.text!)
     }
     
     let _ = detailsButton.rx.tap.bind {

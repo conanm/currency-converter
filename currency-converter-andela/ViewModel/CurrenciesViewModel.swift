@@ -27,7 +27,6 @@ class CurrenciesViewModel {
   }
   
   func convert(from: String, to: String, amount: String) {
-    return
     let url = "https://api.apilayer.com/fixer/convert?to=\(from)&from=\(to)&amount=\(amount)"
     var request = URLRequest(url: URL(string: url)!)
     request.httpMethod = "GET"

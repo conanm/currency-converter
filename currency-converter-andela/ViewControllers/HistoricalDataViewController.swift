@@ -37,16 +37,16 @@ class HistoricalDataViewController: UIViewController {
     setupBindings()
     
     historicalDataViewModel
-      .historical(fromCurrency: fromCurrencyValue,
-                  toCurrency: fromCurrencyCode,
-                  startDate: Date().dateString(daysDifference: -1),
-                  endDate: Date().dateString(daysDifference: -3))
+      .historical(fromCurrency: fromCurrencyCode,
+                  toCurrency: toCurrencyCode,
+                  startDate: Date().dateString(daysDifference: -3),
+                  endDate: Date().dateString(daysDifference: -1))
     
     latestRatesViewModel
       .latestRates(fromCurrency: fromCurrencyCode,
                    toCurrency: toCurrencyCode,
-                   startDate: Date().dateString(daysDifference: -1),
-                   endDate: Date().dateString(daysDifference: -3))
+                   startDate: Date().dateString(daysDifference: -3),
+                   endDate: Date().dateString(daysDifference: -1))
   }
   
   private func setupChartView(rates: [Rate]) {
@@ -70,6 +70,7 @@ class HistoricalDataViewController: UIViewController {
     
     historicalDataViewModel
       .historicalData
+      .observe(on: MainScheduler.instance)
       .subscribe(onNext: { rates in
         self.setupChartView(rates: rates)
       }).disposed(by: disposeBag)

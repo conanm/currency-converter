@@ -30,6 +30,5 @@ struct HistoricalDataResult: Codable {
       }
     }
     return parsedRates
-    
   }
 }

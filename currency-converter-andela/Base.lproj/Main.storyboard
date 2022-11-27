@@ -84,7 +84,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8IJ-OC-zDE">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-T0-wzs" customClass="HistoricalDataChartView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-T0-wzs" userLabel="Chart Container View">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="151.66666666666666"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
@@ -160,6 +160,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chartContainerView" destination="TcR-T0-wzs" id="cq7-7u-CsZ"/>
                         <outlet property="historicalDataTableView" destination="amF-uB-2bH" id="Lho-FR-g5n"/>
                         <outlet property="latestRatesTableView" destination="Wix-Rg-j2j" id="Cfk-KT-sWx"/>
                     </connections>
@@ -167,14 +168,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3M7-VC-9l3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="941.22137404580144" y="-2.1126760563380285"/>
-        </scene>
-        <!--Hosting Controller-->
-        <scene sceneID="qxe-Wl-w7l">
-            <objects>
-                <hostingController id="2Yo-CA-WQE" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EGa-I9-JrD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1610" y="-2"/>
         </scene>
     </scenes>
     <resources>

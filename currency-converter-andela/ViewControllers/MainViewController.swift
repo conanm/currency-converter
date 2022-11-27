@@ -39,7 +39,6 @@ class MainViewController: UIViewController {
   
 }
 
-
 // TODO: add protocol
 // Binding
 extension MainViewController {
@@ -78,6 +77,11 @@ extension MainViewController {
       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
       let vc = storyboard.instantiateViewController(withIdentifier: "HistoricalDataViewController") as! HistoricalDataViewController
       
+      vc.fromCurrencyCode = self.fromCurrency.text!
+      vc.fromCurrencyValue = self.inputValue.text!
+      vc.toCurrencyCode = self.toCurrency.text!
+      vc.toCurrencyValue = self.outputValue.text!
+
       self.present(vc, animated: true)
     }
     

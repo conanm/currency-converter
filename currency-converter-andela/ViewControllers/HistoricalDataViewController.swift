@@ -23,11 +23,12 @@ class HistoricalDataViewController: UIViewController {
   var fromCurrencyCode: String = ""
   var toCurrencyCode: String = ""
   var toCurrencyValue: String = ""
-  var baseCurrency = "EUR"
   var baseVal = 1
   
   
   public var data = PublishSubject<HistoricalDataResult>()
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,16 +39,16 @@ class HistoricalDataViewController: UIViewController {
     setupBindings()
     
     historicalDataViewModel
-      .historical(fromCurrency: "EUR",
-                  toCurrency: "GBP",
-                  startDate: "2022-11-22",
-                  endDate: "2022-11-24")
+      .historical(fromCurrency: fromCurrencyValue,
+                  toCurrency: fromCurrencyCode,
+                  startDate: Date().dateString(daysDifference: -1),
+                  endDate: Date().dateString(daysDifference: -3))
     
     latestRatesViewModel
-      .latestRates(fromCurrency: "",
-                   toCurrency: "",
-                   startDate: "",
-                   endDate: "")
+      .latestRates(fromCurrency: fromCurrencyCode,
+                   toCurrency: toCurrencyCode,
+                   startDate: Date().dateString(daysDifference: -1),
+                   endDate: Date().dateString(daysDifference: -3))
   }
   
   private func setupChartView(rates: [Rate]) {

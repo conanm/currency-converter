@@ -40,4 +40,16 @@ extension Bundle {
     }
 }
 
+extension Date {
+  
+  func dateString(daysDifference: Int) -> String {
+    // TODO: add validation or this can crash due to !
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    print(self)
+    let day = Calendar.current.date(byAdding: .day, value: daysDifference, to: self)!
+    return dateFormatter.string(from: day)
+  }
+
+}
 
